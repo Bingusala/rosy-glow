@@ -1,0 +1,711 @@
+# Cosmetics E-commerce API Documentation
+
+## Authentication Endpoints
+
+### Register a new user
+- **URL:** `/api/auth/register`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "username": "customer1",
+  "email": "customer@example.com",
+  "password": "password123",
+  "fullName": "John Doe",
+  "phoneNumber": "1234567890",
+  "address": "123 Main St, City"
+}
+```
+- **Response:**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "tokenType": "Bearer",
+  "user": {
+    "id": 1,
+    "username": "customer1",
+    "email": "customer@example.com",
+    "fullName": "John Doe",
+    "phoneNumber": "1234567890",
+    "address": "123 Main St, City",
+    "roles": ["ROLE_CUSTOMER"],
+    "active": true
+  }
+}
+```
+- **Authorization:** No authorization required
+
+### Login
+- **URL:** `/api/auth/login`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "username": "customer1",
+  "password": "password123"
+}
+```
+- **Response:**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "tokenType": "Bearer",
+  "user": {
+    "id": 1,
+    "username": "customer1",
+    "email": "customer@example.com",
+    "fullName": "John Doe",
+    "phoneNumber": "1234567890",
+    "address": "123 Main St, City",
+    "roles": ["ROLE_CUSTOMER"],
+    "active": true
+  }
+}
+```
+- **Authorization:** No authorization required
+
+## Category Endpoints
+
+### Get all categories
+- **URL:** `/api/categories`
+- **Method:** `GET`
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Skincare",
+    "description": "Skincare products",
+    "productCount": 10
+  },
+  {
+    "id": 2,
+    "name": "Makeup",
+    "description": "Makeup products",
+    "productCount": 15
+  }
+]
+```
+- **Authorization:** No authorization required
+
+### Get category by ID
+- **URL:** `/api/categories/{id}`
+- **Method:** `GET`
+- **Path Variable:** `id` - The ID of the category
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Skincare",
+  "description": "Skincare products",
+  "productCount": 10
+}
+```
+- **Authorization:** No authorization required
+
+### Create new category
+- **URL:** `/api/categories`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "name": "Skincare",
+  "description": "Skincare products"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Skincare",
+  "description": "Skincare products",
+  "productCount": 0
+}
+```
+- **Authorization:** Required, Admin role
+
+### Update category
+- **URL:** `/api/categories/{id}`
+- **Method:** `PUT`
+- **Path Variable:** `id` - The ID of the category
+- **Request Body:**
+```json
+{
+  "name": "Skincare",
+  "description": "Updated skincare products description"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Skincare",
+  "description": "Updated skincare products description",
+  "productCount": 10
+}
+```
+- **Authorization:** Required, Admin role
+
+### Delete category
+- **URL:** `/api/categories/{id}`
+- **Method:** `DELETE`
+- **Path Variable:** `id` - The ID of the category
+- **Response:** No content (204)
+- **Authorization:** Required, Admin role
+
+## Product Endpoints
+
+### Get all products
+- **URL:** `/api/products`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+  - `sort` (optional): Sort field (default: "id,asc")
+- **Response:**
+```json
+{
+  "content": [
+    {
+      "id": 1,
+      "name": "Face Cream",
+      "description": "Moisturizing face cream",
+      "price": 19.99,
+      "stockQuantity": 100,
+      "imageUrl": "http://example.com/images/face-cream.jpg",
+      "categoryId": 1,
+      "categoryName": "Skincare",
+      "active": true
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10,
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    }
+  },
+  "totalElements": 100,
+  "totalPages": 10,
+  "size": 10,
+  "number": 0,
+  "first": true,
+  "last": false,
+  "numberOfElements": 10,
+  "empty": false
+}
+```
+- **Authorization:** No authorization required
+
+### Get product by ID
+- **URL:** `/api/products/{id}`
+- **Method:** `GET`
+- **Path Variable:** `id` - The ID of the product
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Face Cream",
+  "description": "Moisturizing face cream",
+  "price": 19.99,
+  "stockQuantity": 100,
+  "imageUrl": "http://example.com/images/face-cream.jpg",
+  "categoryId": 1,
+  "categoryName": "Skincare",
+  "active": true
+}
+```
+- **Authorization:** No authorization required
+
+### Get products by category
+- **URL:** `/api/products/category/{categoryId}`
+- **Method:** `GET`
+- **Path Variable:** `categoryId` - The ID of the category
+- **Query Parameters:**
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+- **Response:** Same format as Get all products
+- **Authorization:** No authorization required
+
+### Search products
+- **URL:** `/api/products/search`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `keyword`: Search keyword
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+- **Response:** Same format as Get all products
+- **Authorization:** No authorization required
+
+### Create new product
+- **URL:** `/api/products`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "name": "Face Cream",
+  "description": "Moisturizing face cream",
+  "price": 19.99,
+  "stockQuantity": 100,
+  "imageUrl": "http://example.com/images/face-cream.jpg",
+  "categoryId": 1
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Face Cream",
+  "description": "Moisturizing face cream",
+  "price": 19.99,
+  "stockQuantity": 100,
+  "imageUrl": "http://example.com/images/face-cream.jpg",
+  "categoryId": 1,
+  "categoryName": "Skincare",
+  "active": true
+}
+```
+- **Authorization:** Required, Admin role
+
+### Update product
+- **URL:** `/api/products/{id}`
+- **Method:** `PUT`
+- **Path Variable:** `id` - The ID of the product
+- **Request Body:**
+```json
+{
+  "name": "Face Cream",
+  "description": "Updated moisturizing face cream",
+  "price": 24.99,
+  "stockQuantity": 80,
+  "imageUrl": "http://example.com/images/face-cream-new.jpg",
+  "categoryId": 1,
+  "active": true
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "name": "Face Cream",
+  "description": "Updated moisturizing face cream",
+  "price": 24.99,
+  "stockQuantity": 80,
+  "imageUrl": "http://example.com/images/face-cream-new.jpg",
+  "categoryId": 1,
+  "categoryName": "Skincare",
+  "active": true
+}
+```
+- **Authorization:** Required, Admin role
+
+### Delete product
+- **URL:** `/api/products/{id}`
+- **Method:** `DELETE`
+- **Path Variable:** `id` - The ID of the product
+- **Response:** No content (204)
+- **Authorization:** Required, Admin role
+
+## User Management Endpoints
+
+### Get all users (admin only)
+- **URL:** `/api/users`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+- **Response:**
+```json
+{
+  "content": [
+    {
+      "id": 1,
+      "username": "customer1",
+      "email": "customer@example.com",
+      "fullName": "John Doe",
+      "phoneNumber": "1234567890",
+      "address": "123 Main St, City",
+      "roles": ["ROLE_CUSTOMER"],
+      "active": true
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10,
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    }
+  },
+  "totalElements": 100,
+  "totalPages": 10,
+  "size": 10,
+  "number": 0,
+  "first": true,
+  "last": false,
+  "numberOfElements": 10,
+  "empty": false
+}
+```
+- **Authorization:** Required, Admin role
+
+### Get user by ID
+- **URL:** `/api/users/{id}`
+- **Method:** `GET`
+- **Path Variable:** `id` - The ID of the user
+- **Response:**
+```json
+{
+  "id": 1,
+  "username": "customer1",
+  "email": "customer@example.com",
+  "fullName": "John Doe",
+  "phoneNumber": "1234567890",
+  "address": "123 Main St, City",
+  "roles": ["ROLE_CUSTOMER"],
+  "active": true
+}
+```
+- **Authorization:** Required, Admin role or the user themselves
+
+### Update user
+- **URL:** `/api/users/{id}`
+- **Method:** `PUT`
+- **Path Variable:** `id` - The ID of the user
+- **Request Body:**
+```json
+{
+  "fullName": "John Doe Updated",
+  "phoneNumber": "0987654321",
+  "address": "456 New St, City"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "username": "customer1",
+  "email": "customer@example.com",
+  "fullName": "John Doe Updated",
+  "phoneNumber": "0987654321",
+  "address": "456 New St, City",
+  "roles": ["ROLE_CUSTOMER"],
+  "active": true
+}
+```
+- **Authorization:** Required, Admin role or the user themselves
+
+### Delete user
+- **URL:** `/api/users/{id}`
+- **Method:** `DELETE`
+- **Path Variable:** `id` - The ID of the user
+- **Response:** No content (204)
+- **Authorization:** Required, Admin role
+
+## Cart Endpoints
+
+### Get user's cart
+- **URL:** `/api/cart`
+- **Method:** `GET`
+- **Response:**
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "totalAmount": 59.97,
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 3,
+      "unitPrice": 19.99,
+      "subtotal": 59.97,
+      "imageUrl": "http://example.com/images/face-cream.jpg"
+    }
+  ]
+}
+```
+- **Authorization:** Required, Customer role
+
+### Add item to cart
+- **URL:** `/api/cart/items`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "productId": 1,
+  "quantity": 2
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "totalAmount": 39.98,
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 2,
+      "unitPrice": 19.99,
+      "subtotal": 39.98,
+      "imageUrl": "http://example.com/images/face-cream.jpg"
+    }
+  ]
+}
+```
+- **Authorization:** Required, Customer role
+
+### Update cart item
+- **URL:** `/api/cart/items/{itemId}`
+- **Method:** `PUT`
+- **Path Variable:** `itemId` - The ID of the cart item
+- **Request Body:**
+```json
+{
+  "quantity": 3
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "totalAmount": 59.97,
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 3,
+      "unitPrice": 19.99,
+      "subtotal": 59.97,
+      "imageUrl": "http://example.com/images/face-cream.jpg"
+    }
+  ]
+}
+```
+- **Authorization:** Required, Customer role
+
+### Remove item from cart
+- **URL:** `/api/cart/items/{itemId}`
+- **Method:** `DELETE`
+- **Path Variable:** `itemId` - The ID of the cart item
+- **Response:**
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "totalAmount": 0,
+  "items": []
+}
+```
+- **Authorization:** Required, Customer role
+
+### Clear cart
+- **URL:** `/api/cart/clear`
+- **Method:** `DELETE`
+- **Response:**
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "totalAmount": 0,
+  "items": []
+}
+```
+- **Authorization:** Required, Customer role
+
+## Order Endpoints
+
+### Create order (checkout)
+- **URL:** `/api/orders`
+- **Method:** `POST`
+- **Request Body:**
+```json
+{
+  "shippingAddress": "123 Main St, City"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "orderDate": "2023-05-20T15:30:45",
+  "totalAmount": 59.97,
+  "status": "PENDING",
+  "shippingAddress": "123 Main St, City",
+  "trackingNumber": null,
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 3,
+      "unitPrice": 19.99,
+      "subtotal": 59.97
+    }
+  ]
+}
+```
+- **Authorization:** Required, Customer role
+
+### Get user's orders
+- **URL:** `/api/orders`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+- **Response:**
+```json
+{
+  "content": [
+    {
+      "id": 1,
+      "orderDate": "2023-05-20T15:30:45",
+      "totalAmount": 59.97,
+      "status": "PENDING",
+      "shippingAddress": "123 Main St, City",
+      "trackingNumber": null,
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "productName": "Face Cream",
+          "quantity": 3,
+          "unitPrice": 19.99,
+          "subtotal": 59.97
+        }
+      ]
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10,
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    }
+  },
+  "totalElements": 1,
+  "totalPages": 1,
+  "size": 10,
+  "number": 0,
+  "first": true,
+  "last": true,
+  "numberOfElements": 1,
+  "empty": false
+}
+```
+- **Authorization:** Required, Customer role
+
+### Get order by ID
+- **URL:** `/api/orders/{id}`
+- **Method:** `GET`
+- **Path Variable:** `id` - The ID of the order
+- **Response:**
+```json
+{
+  "id": 1,
+  "orderDate": "2023-05-20T15:30:45",
+  "totalAmount": 59.97,
+  "status": "PENDING",
+  "shippingAddress": "123 Main St, City",
+  "trackingNumber": null,
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 3,
+      "unitPrice": 19.99,
+      "subtotal": 59.97
+    }
+  ]
+}
+```
+- **Authorization:** Required, Admin role or the customer who placed the order
+
+### Get all orders (admin only)
+- **URL:** `/api/admin/orders`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `page` (optional): Page number (default: 0)
+  - `size` (optional): Page size (default: 10)
+  - `status` (optional): Filter by status
+- **Response:** Same format as Get user's orders
+- **Authorization:** Required, Admin role
+
+### Update order status (admin only)
+- **URL:** `/api/admin/orders/{id}/status`
+- **Method:** `PUT`
+- **Path Variable:** `id` - The ID of the order
+- **Request Body:**
+```json
+{
+  "status": "SHIPPED",
+  "trackingNumber": "TRK123456789"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "orderDate": "2023-05-20T15:30:45",
+  "totalAmount": 59.97,
+  "status": "SHIPPED",
+  "shippingAddress": "123 Main St, City",
+  "trackingNumber": "TRK123456789",
+  "items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Face Cream",
+      "quantity": 3,
+      "unitPrice": 19.99,
+      "subtotal": 59.97
+    }
+  ]
+}
+```
+- **Authorization:** Required, Admin role
+
+## Sales Analytics Endpoints (Admin Only)
+
+### Get sales summary
+- **URL:** `/api/admin/analytics/sales`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `startDate` (optional): Start date in format YYYY-MM-DD
+  - `endDate` (optional): End date in format YYYY-MM-DD
+- **Response:**
+```json
+{
+  "totalSales": 10000.00,
+  "totalOrders": 250,
+  "averageOrderValue": 40.00,
+  "topSellingProducts": [
+    {
+      "productId": 1,
+      "productName": "Face Cream",
+      "totalQuantitySold": 300,
+      "totalRevenue": 5997.00
+    }
+  ],
+  "salesByCategory": [
+    {
+      "categoryId": 1,
+      "categoryName": "Skincare",
+      "totalSales": 6000.00
+    }
+  ]
+}
+```
+- **Authorization:** Required, Admin role 
