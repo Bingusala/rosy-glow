@@ -176,7 +176,7 @@ export function ProductList({ categoryId, searchQuery }: ProductListProps) {
         <>
           <Grid container spacing={3}>
             {products.content.map((product) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id} component="div">
                 <ProductCard product={product} />
               </Grid>
             ))}

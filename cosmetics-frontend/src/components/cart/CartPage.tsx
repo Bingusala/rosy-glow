@@ -89,12 +89,12 @@ export function CartPage() {
 
       <Grid container spacing={4}>
         {/* Cart Items */}
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} component="div">
           {cart.items.map((item) => (
             <Card key={item.id} sx={{ mb: 2 }}>
               <CardContent>
                 <Grid container spacing={2} alignItems="center">
-                  <Grid item xs={12} sm={3}>
+                  <Grid item xs={12} sm={3} component="div">
                     <img
                       src={item.imageUrl || 'https://via.placeholder.com/150x150?text=No+Image'}
                       alt={item.productName}
@@ -107,7 +107,7 @@ export function CartPage() {
                     />
                   </Grid>
                   
-                  <Grid item xs={12} sm={5}>
+                  <Grid item xs={12} sm={5} component="div">
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                       {item.productName}
                     </Typography>
@@ -116,7 +116,7 @@ export function CartPage() {
                     </Typography>
                   </Grid>
                   
-                  <Grid item xs={12} sm={2}>
+                  <Grid item xs={12} sm={2} component="div">
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <IconButton
                         onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
@@ -136,7 +136,7 @@ export function CartPage() {
                     </Box>
                   </Grid>
                   
-                  <Grid item xs={12} sm={2}>
+                  <Grid item xs={12} sm={2} component="div">
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                         {formatPrice(item.subtotal)}
@@ -174,7 +174,7 @@ export function CartPage() {
         </Grid>
 
         {/* Order Summary */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} component="div">
           <Paper sx={{ p: 3, position: 'sticky', top: 20 }}>
             <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
               Order Summary

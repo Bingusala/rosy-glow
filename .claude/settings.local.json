@@ -5,7 +5,13 @@
       "Bash(npm install:*)",
       "Bash(mkdir:*)",
       "Bash(ls:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(rg:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(node:*)",
+      "Bash(timeout 10 npm start:*)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }

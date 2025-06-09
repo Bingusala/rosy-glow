@@ -81,7 +81,7 @@ export function RegisterPage() {
 
           <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -94,7 +94,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -108,7 +108,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   required
                   fullWidth
@@ -121,7 +121,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -134,7 +134,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -147,7 +147,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -161,7 +161,7 @@ export function RegisterPage() {
                   disabled={loading}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
