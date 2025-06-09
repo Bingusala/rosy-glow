@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-react-app:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(npm start)"
+    ],
+    "deny": []
+  }
+}
