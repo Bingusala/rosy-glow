@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Grid,
   Typography,
   Box,
   Pagination,
@@ -174,13 +173,21 @@ export function ProductList({ categoryId, searchQuery }: ProductListProps) {
       {/* Products Grid */}
       {products && products.content.length > 0 ? (
         <>
-          <Grid container spacing={3}>
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(3, 1fr)',
+              lg: 'repeat(4, 1fr)'
+            },
+            gap: 3,
+            mb: 4
+          }}>
             {products.content.map((product) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id} component="div">
-                <ProductCard product={product} />
-              </Grid>
+              <ProductCard key={product.id} product={product} />
             ))}
-          </Grid>
+          </Box>
 
           {/* Pagination */}
           {products.totalPages > 1 && (

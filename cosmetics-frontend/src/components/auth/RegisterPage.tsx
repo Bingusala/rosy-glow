@@ -8,71 +8,76 @@ import {
   Box,
   Alert,
   Link,
-  CircularProgress,
-  Grid
+  CircularProgress
 } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
+interface RegisterFormData {
+  username: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  address: string;
+}
+
 export function RegisterPage() {
-  const [formData, setFormData] = useState({
+  const { register, loading } = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState<RegisterFormData>({
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
     phoneNumber: '',
     address: ''
   });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  
-  const { register } = useAuth();
-  const navigate = useNavigate();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setError('');
 
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
-      return;
-    }
-
-    setLoading(true);
-
     try {
-      const { confirmPassword, ...registerData } = formData;
-      await register(registerData);
+      await register(formData);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
-    } finally {
-      setLoading(false);
+      setError(err.message || 'Registration failed. Please try again.');
     }
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography component="h1" variant="h4" sx={{ mb: 3, color: '#e91e63' }}>
-            💄 Create Account
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Paper
+          elevation={3}
+          sx={{
+            padding: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: '100%'
+          }}
+        >
+          <Typography component="h1" variant="h4" sx={{ mb: 2, color: '#e91e63', fontWeight: 'bold' }}>
+            Create Account
           </Typography>
           
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3, textAlign: 'center' }}>
+            Join Rosy Glow for exclusive cosmetics and beauty products
+          </Typography>
+
           {error && (
             <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
               {error}
@@ -80,8 +85,9 @@ export function RegisterPage() {
           )}
 
           <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6} component="div">
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {/* Row 1: Username and Email */}
+              <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
                 <TextField
                   required
                   fullWidth
@@ -93,8 +99,6 @@ export function RegisterPage() {
                   onChange={handleChange}
                   disabled={loading}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
                   fullWidth
@@ -107,100 +111,94 @@ export function RegisterPage() {
                   onChange={handleChange}
                   disabled={loading}
                 />
-              </Grid>
-              <Grid item xs={12} component="div">
+              </Box>
+
+              {/* Row 2: Password */}
+              <TextField
+                required
+                fullWidth
+                id="password"
+                label="Password"
+                name="password"
+                type="password"
+                autoComplete="new-password"
+                value={formData.password}
+                onChange={handleChange}
+                disabled={loading}
+              />
+
+              {/* Row 3: First Name and Last Name */}
+              <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
                 <TextField
                   required
                   fullWidth
-                  id="fullName"
-                  label="Full Name"
-                  name="fullName"
-                  autoComplete="name"
-                  value={formData.fullName}
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                   disabled={loading}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  disabled={loading}
+                />
+              </Box>
+
+              {/* Row 4: Phone and Address */}
+              <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+                <TextField
                   fullWidth
                   id="phoneNumber"
                   label="Phone Number"
                   name="phoneNumber"
-                  autoComplete="tel"
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   disabled={loading}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
                 <TextField
-                  required
                   fullWidth
                   id="address"
                   label="Address"
                   name="address"
-                  autoComplete="street-address"
                   value={formData.address}
                   onChange={handleChange}
                   disabled={loading}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  disabled={loading}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  disabled={loading}
-                />
-              </Grid>
-            </Grid>
-            
+              </Box>
+            </Box>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ 
-                mt: 3, 
-                mb: 2, 
+              disabled={loading}
+              sx={{
+                mt: 3,
+                mb: 2,
                 backgroundColor: '#e91e63',
                 '&:hover': {
                   backgroundColor: '#c2185b'
                 }
               }}
-              disabled={loading}
             >
-              {loading ? <CircularProgress size={24} /> : 'Create Account'}
+              {loading ? <CircularProgress size={24} color="inherit" /> : 'Create Account'}
             </Button>
-            
+
             <Box sx={{ textAlign: 'center' }}>
               <Link component={RouterLink} to="/login" variant="body2">
-                Already have an account? Sign In
+                Already have an account? Sign in
               </Link>
             </Box>
           </Box>
-        </Box>
-      </Paper>
+        </Paper>
+      </Box>
     </Container>
   );
 }

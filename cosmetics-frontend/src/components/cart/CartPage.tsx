@@ -5,7 +5,6 @@ import {
   Box,
   Card,
   CardContent,
-  Grid,
   Button,
   IconButton,
   Divider,
@@ -87,14 +86,19 @@ export function CartPage() {
         Shopping Cart ({cart.items.length} items)
       </Typography>
 
-      <Grid container spacing={4}>
+      <Box sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
         {/* Cart Items */}
-        <Grid item xs={12} md={8} component="div">
+        <Box sx={{ flex: 2 }}>
           {cart.items.map((item) => (
             <Card key={item.id} sx={{ mb: 2 }}>
               <CardContent>
-                <Grid container spacing={2} alignItems="center">
-                  <Grid item xs={12} sm={3} component="div">
+                <Box sx={{ 
+                  display: 'flex', 
+                  gap: 2, 
+                  alignItems: 'center',
+                  flexDirection: { xs: 'column', sm: 'row' }
+                }}>
+                  <Box sx={{ flexShrink: 0, width: { xs: '100%', sm: 120 } }}>
                     <img
                       src={item.imageUrl || 'https://via.placeholder.com/150x150?text=No+Image'}
                       alt={item.productName}
@@ -105,53 +109,49 @@ export function CartPage() {
                         borderRadius: 8
                       }}
                     />
-                  </Grid>
+                  </Box>
                   
-                  <Grid item xs={12} sm={5} component="div">
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                       {item.productName}
                     </Typography>
                     <Typography variant="body1" sx={{ color: '#e91e63', fontWeight: 'bold', mt: 1 }}>
                       {formatPrice(item.unitPrice)}
                     </Typography>
-                  </Grid>
+                  </Box>
                   
-                  <Grid item xs={12} sm={2} component="div">
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <IconButton
-                        onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                        size="small"
-                      >
-                        <Remove />
-                      </IconButton>
-                      <Typography sx={{ mx: 2, minWidth: 20, textAlign: 'center' }}>
-                        {item.quantity}
-                      </Typography>
-                      <IconButton
-                        onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                        size="small"
-                      >
-                        <Add />
-                      </IconButton>
-                    </Box>
-                  </Grid>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <IconButton
+                      onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                      size="small"
+                    >
+                      <Remove />
+                    </IconButton>
+                    <Typography sx={{ minWidth: 20, textAlign: 'center' }}>
+                      {item.quantity}
+                    </Typography>
+                    <IconButton
+                      onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                      size="small"
+                    >
+                      <Add />
+                    </IconButton>
+                  </Box>
                   
-                  <Grid item xs={12} sm={2} component="div">
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        {formatPrice(item.subtotal)}
-                      </Typography>
-                      <IconButton
-                        onClick={() => removeFromCart(item.id)}
-                        color="error"
-                        size="small"
-                        sx={{ mt: 1 }}
-                      >
-                        <Delete />
-                      </IconButton>
-                    </Box>
-                  </Grid>
-                </Grid>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                      {formatPrice(item.subtotal)}
+                    </Typography>
+                    <IconButton
+                      onClick={() => removeFromCart(item.id)}
+                      color="error"
+                      size="small"
+                      sx={{ mt: 1 }}
+                    >
+                      <Delete />
+                    </IconButton>
+                  </Box>
+                </Box>
               </CardContent>
             </Card>
           ))}
@@ -171,10 +171,10 @@ export function CartPage() {
               Clear Cart
             </Button>
           </Box>
-        </Grid>
+        </Box>
 
         {/* Order Summary */}
-        <Grid item xs={12} md={4} component="div">
+        <Box sx={{ flex: 1, maxWidth: { md: 400 } }}>
           <Paper sx={{ p: 3, position: 'sticky', top: 20 }}>
             <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
               Order Summary
@@ -222,8 +222,8 @@ export function CartPage() {
               Checkout
             </Button>
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Container>
   );
 }
