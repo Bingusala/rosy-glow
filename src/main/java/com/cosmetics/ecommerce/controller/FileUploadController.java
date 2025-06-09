@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +22,8 @@ import java.util.Map;
 @RequestMapping("/api")
 public class FileUploadController {
 
-    @Autowired
-    private FileStorageService fileStorageService;
+    // @Autowired
+    // private FileStorageService fileStorageService;
 
     @PostMapping("/admin/upload/product-image")
     @PreAuthorize("hasRole('ADMIN')")
@@ -72,16 +73,22 @@ public class FileUploadController {
 
     @GetMapping("/admin/upload/restrictions")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getUploadRestrictions() {
+    public ResponseEntity<Map<String, Object>> getUploadRestrictions() {
         Map<String, Object> restrictions = new HashMap<>();
-        restrictions.put("maxFileSizeMB", FileStorageService.FileUploadRestrictions.MAX_FILE_SIZE_MB);
-        restrictions.put("maxWidthPx", FileStorageService.FileUploadRestrictions.MAX_WIDTH_PX);
-        restrictions.put("maxHeightPx", FileStorageService.FileUploadRestrictions.MAX_HEIGHT_PX);
-        restrictions.put("minWidthPx", FileStorageService.FileUploadRestrictions.MIN_WIDTH_PX);
-        restrictions.put("minHeightPx", FileStorageService.FileUploadRestrictions.MIN_HEIGHT_PX);
-        restrictions.put("allowedFormats", FileStorageService.FileUploadRestrictions.ALLOWED_FORMATS);
+        restrictions.put("maxFileSizeMB", 5);
+        restrictions.put("maxWidthPx", 2000);
+        restrictions.put("maxHeightPx", 2000);
+        restrictions.put("minWidthPx", 300);
+        restrictions.put("minHeightPx", 300);
+        restrictions.put("allowedFormats", Arrays.asList("JPEG", "PNG", "WebP"));
         
         return ResponseEntity.ok(restrictions);
+    }
+    
+    @GetMapping("/admin/upload/test")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Upload controller working");
     }
 
     @DeleteMapping("/admin/files/{fileName:.+}")

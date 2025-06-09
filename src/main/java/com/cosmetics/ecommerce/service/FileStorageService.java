@@ -118,12 +118,27 @@ public class FileStorageService {
         return filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
     }
 
-    public static class FileUploadRestrictions {
-        public static final long MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024);
-        public static final int MAX_WIDTH_PX = MAX_WIDTH;
-        public static final int MAX_HEIGHT_PX = MAX_HEIGHT;
-        public static final int MIN_WIDTH_PX = MIN_WIDTH;
-        public static final int MIN_HEIGHT_PX = MIN_HEIGHT;
-        public static final List<String> ALLOWED_FORMATS = Arrays.asList("JPEG", "PNG", "WebP");
+    public long getMaxFileSizeMB() {
+        return MAX_FILE_SIZE / (1024 * 1024);
+    }
+
+    public int getMaxWidthPx() {
+        return MAX_WIDTH;
+    }
+
+    public int getMaxHeightPx() {
+        return MAX_HEIGHT;
+    }
+
+    public int getMinWidthPx() {
+        return MIN_WIDTH;
+    }
+
+    public int getMinHeightPx() {
+        return MIN_HEIGHT;
+    }
+
+    public List<String> getAllowedFormats() {
+        return Arrays.asList("JPEG", "PNG", "WebP");
     }
 }
