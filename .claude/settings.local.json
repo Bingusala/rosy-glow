@@ -14,7 +14,9 @@
       "Bash(curl:*)",
       "Bash(npm run build:*)",
       "Bash(npx tsc:*)",
-      "Bash(mvn:*)"
+      "Bash(mvn:*)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

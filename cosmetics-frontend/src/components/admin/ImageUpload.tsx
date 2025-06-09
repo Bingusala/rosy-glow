@@ -51,15 +51,21 @@ export function ImageUpload({ onImageUploaded, currentImageUrl, onImageRemoved }
   }, [currentImageUrl]);
 
   const loadRestrictions = async () => {
-    // Set static restrictions for now until backend is fixed
-    setRestrictions({
-      maxFileSizeMB: 5,
-      maxWidthPx: 2000,
-      maxHeightPx: 2000,
-      minWidthPx: 300,
-      minHeightPx: 300,
-      allowedFormats: ['JPEG', 'PNG', 'WebP']
-    });
+    try {
+      const data = await apiService.getUploadRestrictions();
+      setRestrictions(data);
+    } catch (error) {
+      console.error('Failed to load upload restrictions:', error);
+      // Fallback to static restrictions
+      setRestrictions({
+        maxFileSizeMB: 5,
+        maxWidthPx: 2000,
+        maxHeightPx: 2000,
+        minWidthPx: 300,
+        minHeightPx: 300,
+        allowedFormats: ['JPEG', 'PNG', 'WebP']
+      });
+    }
   };
 
   const validateFile = (file: File): string | null => {
@@ -131,17 +137,21 @@ export function ImageUpload({ onImageUploaded, currentImageUrl, onImageRemoved }
         return;
       }
 
-      // Create preview
+      // Create preview immediately
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
 
-      // For now, create a temporary local URL since backend has issues
-      const tempUrl = URL.createObjectURL(file);
-      onImageUploaded(tempUrl);
+      // Upload to backend
+      const response = await apiService.uploadProductImage(file);
+      
+      // Use the returned file URL from backend
+      const imageUrl = response.fileUrl;
+      onImageUploaded(imageUrl);
       setSuccess('Image uploaded successfully!');
       
-      // Clean up preview URL
+      // Update preview with the permanent URL
       URL.revokeObjectURL(previewUrl);
+      setPreview(imageUrl);
       
     } catch (error: any) {
       setError(error.response?.data?.error || 'Upload failed');
@@ -203,7 +213,7 @@ export function ImageUpload({ onImageUploaded, currentImageUrl, onImageRemoved }
               Image Upload Requirements:
             </Typography>
           </Box>
-          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 1 }}>
             <Chip
               label={`Max Size: ${restrictions.maxFileSizeMB}MB`}
               size="small"
@@ -223,6 +233,9 @@ export function ImageUpload({ onImageUploaded, currentImageUrl, onImageRemoved }
               variant="outlined"
             />
           </Stack>
+          <Typography variant="caption" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+            💡 Images are stored on the server and will persist after page refresh. Files are uploaded to the backend storage system.
+          </Typography>
         </Paper>
       )}
 

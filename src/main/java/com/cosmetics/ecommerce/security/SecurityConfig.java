@@ -46,6 +46,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/products/**").permitAll()
                 .requestMatchers("/api/categories/**").permitAll()
+                .requestMatchers("/api/upload/restrictions").permitAll()
+                .requestMatchers("/api/files/**").permitAll()
+                .requestMatchers("/api/test-simple").permitAll()
                 .anyRequest().authenticated()
             );
         

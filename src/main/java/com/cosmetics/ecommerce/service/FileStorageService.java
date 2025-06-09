@@ -1,6 +1,5 @@
 package com.cosmetics.ecommerce.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +17,7 @@ import javax.imageio.ImageIO;
 @Service
 public class FileStorageService {
 
-    @Value("${file.upload-dir:uploads/products}")
-    private String uploadDir;
+    private final String uploadDir = "uploads/products";
 
     private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     private static final int MAX_WIDTH = 2000;

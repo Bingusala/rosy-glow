@@ -239,7 +239,7 @@ class ApiService {
   }
 
   async getUploadRestrictions(): Promise<any> {
-    const response = await this.axios.get('/api/admin/upload/restrictions');
+    const response = await this.axios.get('/api/upload/restrictions');
     return response.data;
   }
 

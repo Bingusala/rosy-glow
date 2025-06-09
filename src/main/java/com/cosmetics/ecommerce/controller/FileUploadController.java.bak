@@ -22,15 +22,15 @@ import java.util.Map;
 @RequestMapping("/api")
 public class FileUploadController {
 
-    // @Autowired
-    // private FileStorageService fileStorageService;
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @PostMapping("/admin/upload/product-image")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> uploadProductImage(@RequestParam("file") MultipartFile file) {
         try {
             String fileName = fileStorageService.storeFile(file);
-            String fileUrl = "/api/files/" + fileName;
+            String fileUrl = "http://localhost:8080/api/files/" + fileName;
             
             Map<String, Object> response = new HashMap<>();
             response.put("fileName", fileName);
@@ -71,8 +71,7 @@ public class FileUploadController {
         }
     }
 
-    @GetMapping("/admin/upload/restrictions")
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/upload/restrictions")
     public ResponseEntity<Map<String, Object>> getUploadRestrictions() {
         Map<String, Object> restrictions = new HashMap<>();
         restrictions.put("maxFileSizeMB", 5);

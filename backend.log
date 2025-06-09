@@ -1,0 +1,172 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.cosmetics:ecommerce >-----------------------
+[INFO] Building ecommerce 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.4:run (default-cli) > test-compile @ ecommerce >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ecommerce ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ ecommerce ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ecommerce ---
+[INFO] skip non existing resourceDirectory /home/ghost/cosmeticsys/rosy-glow/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ ecommerce ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.4:run (default-cli) < test-compile @ ecommerce <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.4:run (default-cli) @ ecommerce ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2025-06-09T16:11:45.828+05:30  INFO 68593 --- [ecommerce] [           main] c.c.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 21.0.7 with PID 68593 (/home/ghost/cosmeticsys/rosy-glow/target/classes started by ghost in /home/ghost/cosmeticsys/rosy-glow)
+2025-06-09T16:11:45.830+05:30 DEBUG 68593 --- [ecommerce] [           main] c.c.ecommerce.EcommerceApplication       : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-06-09T16:11:45.831+05:30  INFO 68593 --- [ecommerce] [           main] c.c.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-06-09T16:11:47.174+05:30  INFO 68593 --- [ecommerce] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-09T16:11:47.333+05:30  INFO 68593 --- [ecommerce] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147 ms. Found 7 JPA repository interfaces.
+2025-06-09T16:11:48.159+05:30  INFO 68593 --- [ecommerce] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-09T16:11:48.172+05:30  INFO 68593 --- [ecommerce] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-09T16:11:48.173+05:30  INFO 68593 --- [ecommerce] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-06-09T16:11:48.233+05:30  INFO 68593 --- [ecommerce] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-09T16:11:48.236+05:30  INFO 68593 --- [ecommerce] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2331 ms
+2025-06-09T16:11:48.274+05:30  INFO 68593 --- [ecommerce] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-09T16:11:48.529+05:30  INFO 68593 --- [ecommerce] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:cosmetics_db user=SA
+2025-06-09T16:11:48.531+05:30  INFO 68593 --- [ecommerce] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-09T16:11:48.561+05:30  INFO 68593 --- [ecommerce] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:cosmetics_db'
+2025-06-09T16:11:48.767+05:30  INFO 68593 --- [ecommerce] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-09T16:11:48.813+05:30  INFO 68593 --- [ecommerce] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-06-09T16:11:48.870+05:30  INFO 68593 --- [ecommerce] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-09T16:11:49.161+05:30  INFO 68593 --- [ecommerce] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-09T16:11:49.208+05:30  WARN 68593 --- [ecommerce] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-09T16:11:50.443+05:30  INFO 68593 --- [ecommerce] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-09T16:11:50.462+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists cart_items cascade 
+Hibernate: drop table if exists cart_items cascade 
+2025-06-09T16:11:50.469+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists carts cascade 
+Hibernate: drop table if exists carts cascade 
+2025-06-09T16:11:50.470+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists categories cascade 
+Hibernate: drop table if exists categories cascade 
+2025-06-09T16:11:50.471+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists order_items cascade 
+Hibernate: drop table if exists order_items cascade 
+2025-06-09T16:11:50.472+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists orders cascade 
+Hibernate: drop table if exists orders cascade 
+2025-06-09T16:11:50.472+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists products cascade 
+Hibernate: drop table if exists products cascade 
+2025-06-09T16:11:50.473+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists user_roles cascade 
+Hibernate: drop table if exists user_roles cascade 
+2025-06-09T16:11:50.474+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : drop table if exists users cascade 
+Hibernate: drop table if exists users cascade 
+2025-06-09T16:11:50.480+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table cart_items (quantity integer not null, subtotal numeric(38,2) not null, unit_price numeric(38,2) not null, cart_id bigint not null, id bigint generated by default as identity, product_id bigint not null, primary key (id))
+Hibernate: create table cart_items (quantity integer not null, subtotal numeric(38,2) not null, unit_price numeric(38,2) not null, cart_id bigint not null, id bigint generated by default as identity, product_id bigint not null, primary key (id))
+2025-06-09T16:11:50.494+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table carts (total_amount numeric(38,2) not null, id bigint generated by default as identity, user_id bigint not null unique, primary key (id))
+Hibernate: create table carts (total_amount numeric(38,2) not null, id bigint generated by default as identity, user_id bigint not null unique, primary key (id))
+2025-06-09T16:11:50.499+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table categories (id bigint generated by default as identity, description varchar(255), name varchar(255) not null unique, primary key (id))
+Hibernate: create table categories (id bigint generated by default as identity, description varchar(255), name varchar(255) not null unique, primary key (id))
+2025-06-09T16:11:50.504+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table order_items (quantity integer not null, subtotal numeric(38,2) not null, unit_price numeric(38,2) not null, id bigint generated by default as identity, order_id bigint not null, product_id bigint not null, primary key (id))
+Hibernate: create table order_items (quantity integer not null, subtotal numeric(38,2) not null, unit_price numeric(38,2) not null, id bigint generated by default as identity, order_id bigint not null, product_id bigint not null, primary key (id))
+2025-06-09T16:11:50.508+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table orders (total_amount numeric(38,2) not null, id bigint generated by default as identity, order_date timestamp(6) not null, user_id bigint not null, shipping_address varchar(255), status varchar(255) not null check (status in ('PENDING','PROCESSING','SHIPPED','DELIVERED','CANCELLED')), tracking_number varchar(255), primary key (id))
+Hibernate: create table orders (total_amount numeric(38,2) not null, id bigint generated by default as identity, order_date timestamp(6) not null, user_id bigint not null, shipping_address varchar(255), status varchar(255) not null check (status in ('PENDING','PROCESSING','SHIPPED','DELIVERED','CANCELLED')), tracking_number varchar(255), primary key (id))
+2025-06-09T16:11:50.519+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table products (active boolean, price numeric(38,2) not null, stock_quantity integer not null, category_id bigint not null, id bigint generated by default as identity, description TEXT, image_url varchar(255), name varchar(255) not null, primary key (id))
+Hibernate: create table products (active boolean, price numeric(38,2) not null, stock_quantity integer not null, category_id bigint not null, id bigint generated by default as identity, description TEXT, image_url varchar(255), name varchar(255) not null, primary key (id))
+2025-06-09T16:11:50.522+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table user_roles (user_id bigint not null, role varchar(255) check (role in ('ROLE_ADMIN','ROLE_CUSTOMER')))
+Hibernate: create table user_roles (user_id bigint not null, role varchar(255) check (role in ('ROLE_ADMIN','ROLE_CUSTOMER')))
+2025-06-09T16:11:50.526+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : create table users (active boolean not null, id bigint generated by default as identity, address varchar(255), email varchar(255) unique, first_name varchar(255), full_name varchar(255), last_name varchar(255), password varchar(255) not null, phone_number varchar(255), username varchar(255) not null unique, primary key (id))
+Hibernate: create table users (active boolean not null, id bigint generated by default as identity, address varchar(255), email varchar(255) unique, first_name varchar(255), full_name varchar(255), last_name varchar(255), password varchar(255) not null, phone_number varchar(255), username varchar(255) not null unique, primary key (id))
+2025-06-09T16:11:50.530+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists cart_items add constraint FKpcttvuq4mxppo8sxggjtn5i2c foreign key (cart_id) references carts
+Hibernate: alter table if exists cart_items add constraint FKpcttvuq4mxppo8sxggjtn5i2c foreign key (cart_id) references carts
+2025-06-09T16:11:50.543+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists cart_items add constraint FK1re40cjegsfvw58xrkdp6bac6 foreign key (product_id) references products
+Hibernate: alter table if exists cart_items add constraint FK1re40cjegsfvw58xrkdp6bac6 foreign key (product_id) references products
+2025-06-09T16:11:50.546+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists carts add constraint FKb5o626f86h46m4s7ms6ginnop foreign key (user_id) references users
+Hibernate: alter table if exists carts add constraint FKb5o626f86h46m4s7ms6ginnop foreign key (user_id) references users
+2025-06-09T16:11:50.548+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists order_items add constraint FKbioxgbv59vetrxe0ejfubep1w foreign key (order_id) references orders
+Hibernate: alter table if exists order_items add constraint FKbioxgbv59vetrxe0ejfubep1w foreign key (order_id) references orders
+2025-06-09T16:11:50.551+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists order_items add constraint FKocimc7dtr037rh4ls4l95nlfi foreign key (product_id) references products
+Hibernate: alter table if exists order_items add constraint FKocimc7dtr037rh4ls4l95nlfi foreign key (product_id) references products
+2025-06-09T16:11:50.595+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists orders add constraint FK32ql8ubntj5uh44ph9659tiih foreign key (user_id) references users
+Hibernate: alter table if exists orders add constraint FK32ql8ubntj5uh44ph9659tiih foreign key (user_id) references users
+2025-06-09T16:11:50.601+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists products add constraint FKog2rp4qthbtt2lfyhfo32lsw9 foreign key (category_id) references categories
+Hibernate: alter table if exists products add constraint FKog2rp4qthbtt2lfyhfo32lsw9 foreign key (category_id) references categories
+2025-06-09T16:11:50.605+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : alter table if exists user_roles add constraint FKhfh9dx7w3ubf1co1vdev94g3f foreign key (user_id) references users
+Hibernate: alter table if exists user_roles add constraint FKhfh9dx7w3ubf1co1vdev94g3f foreign key (user_id) references users
+2025-06-09T16:11:50.612+05:30  INFO 68593 --- [ecommerce] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-09T16:11:51.179+05:30  INFO 68593 --- [ecommerce] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-09T16:11:52.186+05:30  WARN 68593 --- [ecommerce] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-09T16:11:52.601+05:30  INFO 68593 --- [ecommerce] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@46bc9802, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43f81c74, org.springframework.security.web.context.SecurityContextHolderFilter@711cd6f9, org.springframework.security.web.header.HeaderWriterFilter@1643e817, org.springframework.web.filter.CorsFilter@23d030b1, org.springframework.security.web.authentication.logout.LogoutFilter@61774805, com.cosmetics.ecommerce.security.JwtAuthenticationFilter@13653a0b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7307e418, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30d5668a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@31bbcced, org.springframework.security.web.session.SessionManagementFilter@71639428, org.springframework.security.web.access.ExceptionTranslationFilter@5f571d96, org.springframework.security.web.access.intercept.AuthorizationFilter@74ae2dec]
+2025-06-09T16:11:52.991+05:30  INFO 68593 --- [ecommerce] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-06-09T16:11:53.002+05:30  INFO 68593 --- [ecommerce] [           main] c.c.ecommerce.EcommerceApplication       : Started EcommerceApplication in 7.775 seconds (process running for 8.274)
+2025-06-09T16:11:53.115+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+Hibernate: select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+2025-06-09T16:11:53.321+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into users (active,address,email,first_name,full_name,last_name,password,phone_number,username,id) values (?,?,?,?,?,?,?,?,?,default)
+Hibernate: insert into users (active,address,email,first_name,full_name,last_name,password,phone_number,username,id) values (?,?,?,?,?,?,?,?,?,default)
+2025-06-09T16:11:53.350+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into user_roles (user_id,role) values (?,?)
+Hibernate: insert into user_roles (user_id,role) values (?,?)
+2025-06-09T16:11:53.371+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : select count(*) from categories c1_0
+Hibernate: select count(*) from categories c1_0
+2025-06-09T16:11:53.375+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into categories (description,name,id) values (?,?,default)
+Hibernate: insert into categories (description,name,id) values (?,?,default)
+2025-06-09T16:11:53.379+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into categories (description,name,id) values (?,?,default)
+Hibernate: insert into categories (description,name,id) values (?,?,default)
+2025-06-09T16:11:53.382+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into categories (description,name,id) values (?,?,default)
+Hibernate: insert into categories (description,name,id) values (?,?,default)
+2025-06-09T16:11:53.385+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into categories (description,name,id) values (?,?,default)
+Hibernate: insert into categories (description,name,id) values (?,?,default)
+2025-06-09T16:11:53.387+05:30 DEBUG 68593 --- [ecommerce] [           main] org.hibernate.SQL                        : insert into categories (description,name,id) values (?,?,default)
+Hibernate: insert into categories (description,name,id) values (?,?,default)
+2025-06-09T16:13:39.043+05:30  INFO 68593 --- [ecommerce] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-09T16:13:39.043+05:30  INFO 68593 --- [ecommerce] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-09T16:13:39.046+05:30  INFO 68593 --- [ecommerce] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-09T16:13:39.080+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/test-simple
+2025-06-09T16:13:39.094+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:13:39.098+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/test-simple
+2025-06-09T16:13:46.435+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/upload/restrictions
+2025-06-09T16:13:46.436+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:13:46.436+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/upload/restrictions
+2025-06-09T16:14:32.128+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2025-06-09T16:14:32.143+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:14:32.145+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2025-06-09T16:14:32.762+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+2025-06-09T16:14:32.783+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] org.hibernate.SQL                        : select r1_0.user_id,r1_0.role from user_roles r1_0 where r1_0.user_id=?
+Hibernate: select r1_0.user_id,r1_0.role from user_roles r1_0 where r1_0.user_id=?
+2025-06-09T16:14:32.931+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-06-09T16:14:33.028+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-4] org.hibernate.SQL                        : select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+2025-06-09T16:14:42.191+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2025-06-09T16:14:42.192+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:14:42.192+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2025-06-09T16:14:42.198+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+2025-06-09T16:14:42.204+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] org.hibernate.SQL                        : select r1_0.user_id,r1_0.role from user_roles r1_0 where r1_0.user_id=?
+Hibernate: select r1_0.user_id,r1_0.role from user_roles r1_0 where r1_0.user_id=?
+2025-06-09T16:14:42.323+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-06-09T16:14:42.327+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-6] org.hibernate.SQL                        : select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.active,u1_0.address,u1_0.email,u1_0.first_name,u1_0.full_name,u1_0.last_name,u1_0.password,u1_0.phone_number,u1_0.username from users u1_0 where u1_0.username=?
+2025-06-09T16:15:46.723+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/upload/product-image
+2025-06-09T16:15:46.723+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:15:46.741+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /error
+2025-06-09T16:15:46.742+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:16:24.984+05:30 DEBUG 68593 --- [ecommerce] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/upload/product-image
+2025-06-09T16:16:24.985+05:30 DEBUG 68593 --- [ecommerce] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:16:24.989+05:30 DEBUG 68593 --- [ecommerce] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /error
+2025-06-09T16:16:24.990+05:30 DEBUG 68593 --- [ecommerce] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:16:39.448+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/upload/product-image
+2025-06-09T16:16:39.504+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/upload/product-image
+2025-06-09T16:16:39.554+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.cosmetics.ecommerce.controller.SimpleFileUploadController.uploadImage(org.springframework.web.multipart.MultipartFile); target is of class [com.cosmetics.ecommerce.controller.SimpleFileUploadController]
+2025-06-09T16:16:39.624+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-1] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.cosmetics.ecommerce.controller.SimpleFileUploadController.uploadImage(org.springframework.web.multipart.MultipartFile); target is of class [com.cosmetics.ecommerce.controller.SimpleFileUploadController]
+2025-06-09T16:16:48.046+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/files/5d7abafc-728f-411a-9243-088f87dc211d.jpg
+2025-06-09T16:16:48.047+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-06-09T16:16:48.047+05:30 DEBUG 68593 --- [ecommerce] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/files/5d7abafc-728f-411a-9243-088f87dc211d.jpg
