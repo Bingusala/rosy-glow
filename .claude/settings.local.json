@@ -11,7 +11,9 @@
       "Bash(true)",
       "Bash(node:*)",
       "Bash(timeout 10 npm start:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": []
   }

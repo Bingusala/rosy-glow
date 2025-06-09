@@ -10,6 +10,7 @@ import { RegisterPage } from './components/auth/RegisterPage';
 import { ProductList } from './components/products/ProductList';
 import { CartPage } from './components/cart/CartPage';
 import { ProfilePage } from './components/profile/ProfilePage';
+import { AdminDashboard } from './components/admin/AdminDashboard';
 import { useSearchParams } from 'react-router-dom';
 
 // Create theme with pink color scheme
@@ -84,7 +85,7 @@ function OrdersPage() {
 }
 
 function AdminPage() {
-  return <div>Admin Dashboard - Coming Soon!</div>;
+  return <AdminDashboard />;
 }
 
 function ProductDetailPage() {
