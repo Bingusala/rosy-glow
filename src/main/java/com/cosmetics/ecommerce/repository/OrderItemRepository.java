@@ -14,22 +14,17 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     
     List<OrderItem> findByOrderId(Long orderId);
     
-    @Query("SELECT oi.productId, p.name, SUM(oi.quantity), SUM(oi.subtotal) " +
+    @Query("SELECT oi.product.id, oi.product.name, SUM(oi.quantity), SUM(oi.subtotal) " +
            "FROM OrderItem oi " +
-           "JOIN oi.order o " +
-           "JOIN Product p ON p.id = oi.productId " +
-           "WHERE DATE(o.orderDate) BETWEEN :startDate AND :endDate " +
-           "GROUP BY oi.productId, p.name " +
+           "WHERE DATE(oi.order.orderDate) BETWEEN :startDate AND :endDate " +
+           "GROUP BY oi.product.id, oi.product.name " +
            "ORDER BY SUM(oi.subtotal) DESC")
     List<Object[]> getTopSellingProducts(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
     
-    @Query("SELECT p.categoryId, c.name, SUM(oi.subtotal) " +
+    @Query("SELECT oi.product.category.id, oi.product.category.name, SUM(oi.subtotal) " +
            "FROM OrderItem oi " +
-           "JOIN oi.order o " +
-           "JOIN Product p ON p.id = oi.productId " +
-           "JOIN Category c ON c.id = p.categoryId " +
-           "WHERE DATE(o.orderDate) BETWEEN :startDate AND :endDate " +
-           "GROUP BY p.categoryId, c.name " +
+           "WHERE DATE(oi.order.orderDate) BETWEEN :startDate AND :endDate " +
+           "GROUP BY oi.product.category.id, oi.product.category.name " +
            "ORDER BY SUM(oi.subtotal) DESC")
     List<Object[]> getSalesByCategory(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 } 
