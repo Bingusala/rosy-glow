@@ -224,6 +224,29 @@ class ApiService {
     const response = await this.axios.get<SalesAnalytics>('/api/admin/analytics/sales', { params });
     return response.data;
   }
+
+  // File Upload APIs
+  async uploadProductImage(file: File): Promise<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const response = await this.axios.post('/api/admin/upload/product-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  }
+
+  async getUploadRestrictions(): Promise<any> {
+    const response = await this.axios.get('/api/admin/upload/restrictions');
+    return response.data;
+  }
+
+  async deleteUploadedFile(fileName: string): Promise<any> {
+    const response = await this.axios.delete(`/api/admin/files/${fileName}`);
+    return response.data;
+  }
 }
 
 export const apiService = new ApiService();

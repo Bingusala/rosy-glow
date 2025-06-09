@@ -40,6 +40,7 @@ import {
 } from '@mui/icons-material';
 import { apiService } from '../../services/api';
 import { Product, Category, ProductRequest, PaginatedResponse } from '../../types/api';
+import { ImageUpload } from './ImageUpload';
 
 interface ProductFormData {
   name: string;
@@ -420,12 +421,10 @@ export function ProductManagement() {
                 inputProps={{ min: 0 }}
               />
             </Box>
-            <TextField
-              label="Image URL"
-              value={formData.imageUrl}
-              onChange={(e) => handleFormChange('imageUrl', e.target.value)}
-              fullWidth
-              required
+            <ImageUpload
+              onImageUploaded={(imageUrl) => handleFormChange('imageUrl', imageUrl)}
+              currentImageUrl={formData.imageUrl}
+              onImageRemoved={() => handleFormChange('imageUrl', '')}
             />
             <FormControl fullWidth required>
               <InputLabel>Category</InputLabel>
@@ -458,7 +457,7 @@ export function ProductManagement() {
           <Button
             onClick={handleSubmit}
             variant="contained"
-            disabled={loading || !formData.name || !formData.description || formData.categoryId === 0}
+            disabled={loading || !formData.name || !formData.description || !formData.imageUrl || formData.categoryId === 0}
             sx={{ backgroundColor: '#e91e63', '&:hover': { backgroundColor: '#c2185b' } }}
           >
             {loading ? <CircularProgress size={20} /> : editingProduct ? 'Update' : 'Create'}
