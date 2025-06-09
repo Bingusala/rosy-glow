@@ -29,6 +29,12 @@ export interface RegisterRequest {
   address: string;
 }
 
+export interface UpdateUserRequest {
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+}
+
 export interface Category {
   id: number;
   name: string;

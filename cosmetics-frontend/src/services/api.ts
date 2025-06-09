@@ -3,6 +3,7 @@ import {
   AuthResponse,
   LoginRequest,
   RegisterRequest,
+  UpdateUserRequest,
   User,
   Category,
   Product,
@@ -147,7 +148,7 @@ class ApiService {
     return response.data;
   }
 
-  async updateUser(id: number, userData: Partial<Pick<User, 'fullName' | 'phoneNumber' | 'address'>>): Promise<User> {
+  async updateUser(id: number, userData: UpdateUserRequest): Promise<User> {
     const response = await this.axios.put<User>(`/api/users/${id}`, userData);
     return response.data;
   }

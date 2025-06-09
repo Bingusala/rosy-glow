@@ -24,6 +24,8 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../../services/api';
+import { UpdateUserRequest } from '../../types/api';
 
 interface ProfileFormData {
   fullName: string;
@@ -33,7 +35,7 @@ interface ProfileFormData {
 }
 
 export function ProfilePage() {
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, refreshUser } = useAuth();
   const navigate = useNavigate();
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -92,23 +94,31 @@ export function ProfilePage() {
   };
 
   const handleSave = async () => {
+    if (!user) return;
+    
     setLoading(true);
     setError('');
     setSuccess('');
 
     try {
-      // TODO: Implement API call to update user profile
-      // For now, just simulate a successful update
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Prepare update data (excluding email as it's not updatable according to API)
+      const updateData: UpdateUserRequest = {
+        fullName: formData.fullName,
+        phoneNumber: formData.phoneNumber,
+        address: formData.address
+      };
+      
+      // Call the backend API to update user profile
+      await apiService.updateUser(user.id, updateData);
+      
+      // Refresh user data in the auth context
+      await refreshUser();
       
       setSuccess('Profile updated successfully!');
       setEditing(false);
       
-      // In a real implementation, you would update the user context here
-      console.log('Profile update data:', formData);
-      
     } catch (err: any) {
-      setError(err.message || 'Failed to update profile. Please try again.');
+      setError(err.response?.data?.message || err.message || 'Failed to update profile. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -239,12 +249,12 @@ export function ProfilePage() {
                 name="email"
                 type="email"
                 value={formData.email}
-                onChange={handleChange}
-                disabled={!editing || loading}
-                variant={editing ? "outlined" : "standard"}
+                disabled={true}
+                variant="standard"
                 InputProps={{
-                  readOnly: !editing
+                  readOnly: true
                 }}
+                helperText="Email cannot be changed"
               />
             </Box>
 

@@ -8,6 +8,7 @@ interface AuthContextType {
   login: (credentials: LoginRequest) => Promise<void>;
   register: (userData: RegisterRequest) => Promise<void>;
   logout: () => void;
+  refreshUser: () => Promise<void>;
   isAuthenticated: boolean;
   isAdmin: boolean;
   loading: boolean;
@@ -80,6 +81,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem('user');
   };
 
+  const refreshUser = async (): Promise<void> => {
+    if (!user) return;
+    
+    try {
+      const updatedUser = await apiService.getUserById(user.id);
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    } catch (error) {
+      console.error('Failed to refresh user data:', error);
+      // Don't throw error, just log it
+    }
+  };
+
   const isAuthenticated = !!user && !!token;
   const isAdmin = user?.roles?.includes('ROLE_ADMIN') || false;
 
@@ -89,6 +103,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     login,
     register,
     logout,
+    refreshUser,
     isAuthenticated,
     isAdmin,
     loading
