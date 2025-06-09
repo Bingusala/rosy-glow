@@ -50,7 +50,17 @@ export function RegisterPage() {
     setError('');
 
     try {
-      await register(formData);
+      // Combine firstName and lastName into fullName for the API
+      const registerData = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+        phoneNumber: formData.phoneNumber,
+        address: formData.address
+      };
+      
+      await register(registerData);
       navigate('/');
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again.');
