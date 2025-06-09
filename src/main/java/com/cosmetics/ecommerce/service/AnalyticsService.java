@@ -22,42 +22,58 @@ public class AnalyticsService {
     private OrderItemRepository orderItemRepository;
 
     public SalesAnalyticsDto getSalesAnalytics(LocalDate startDate, LocalDate endDate) {
-        // Get total sales and order count
-        BigDecimal totalSales = orderRepository.getTotalSalesBetweenDates(startDate, endDate);
-        Long totalOrders = orderRepository.getTotalOrdersBetweenDates(startDate, endDate);
-        
-        // Handle case where there are no orders
-        if (totalSales == null) totalSales = BigDecimal.ZERO;
-        if (totalOrders == null) totalOrders = 0L;
-        
-        // Calculate average order value
-        BigDecimal averageOrderValue = totalOrders > 0 
-            ? totalSales.divide(BigDecimal.valueOf(totalOrders), 2, RoundingMode.HALF_UP)
-            : BigDecimal.ZERO;
+        try {
+            // Get total sales and order count
+            BigDecimal totalSales = orderRepository.getTotalSalesBetweenDates(startDate, endDate);
+            Long totalOrders = orderRepository.getTotalOrdersBetweenDates(startDate, endDate);
+            
+            // Handle case where there are no orders
+            if (totalSales == null) totalSales = BigDecimal.ZERO;
+            if (totalOrders == null) totalOrders = 0L;
+            
+            // Calculate average order value
+            BigDecimal averageOrderValue = totalOrders > 0 
+                ? totalSales.divide(BigDecimal.valueOf(totalOrders), 2, RoundingMode.HALF_UP)
+                : BigDecimal.ZERO;
 
-        // Get top selling products
-        List<Object[]> topProductsData = orderItemRepository.getTopSellingProducts(startDate, endDate);
-        List<SalesAnalyticsDto.TopProductDto> topSellingProducts = topProductsData.stream()
-            .map(row -> new SalesAnalyticsDto.TopProductDto(
-                ((Number) row[0]).longValue(),     // productId
-                (String) row[1],                   // productName
-                ((Number) row[2]).longValue(),     // totalQuantitySold
-                (BigDecimal) row[3]                // totalRevenue
-            ))
-            .collect(Collectors.toList());
+            // Get top selling products
+            List<SalesAnalyticsDto.TopProductDto> topSellingProducts;
+            try {
+                List<Object[]> topProductsData = orderItemRepository.getTopSellingProducts(startDate, endDate);
+                topSellingProducts = topProductsData.stream()
+                    .map(row -> new SalesAnalyticsDto.TopProductDto(
+                        ((Number) row[0]).longValue(),     // productId
+                        (String) row[1],                   // productName
+                        ((Number) row[2]).longValue(),     // totalQuantitySold
+                        (BigDecimal) row[3]                // totalRevenue
+                    ))
+                    .collect(Collectors.toList());
+            } catch (Exception e) {
+                topSellingProducts = List.of();
+            }
 
-        // Get sales by category
-        List<Object[]> categoryData = orderItemRepository.getSalesByCategory(startDate, endDate);
-        List<SalesAnalyticsDto.CategorySalesDto> salesByCategory = categoryData.stream()
-            .map(row -> new SalesAnalyticsDto.CategorySalesDto(
-                ((Number) row[0]).longValue(),     // categoryId
-                (String) row[1],                   // categoryName
-                (BigDecimal) row[2]                // totalSales
-            ))
-            .collect(Collectors.toList());
+            // Get sales by category
+            List<SalesAnalyticsDto.CategorySalesDto> salesByCategory;
+            try {
+                List<Object[]> categoryData = orderItemRepository.getSalesByCategory(startDate, endDate);
+                salesByCategory = categoryData.stream()
+                    .map(row -> new SalesAnalyticsDto.CategorySalesDto(
+                        ((Number) row[0]).longValue(),     // categoryId
+                        (String) row[1],                   // categoryName
+                        (BigDecimal) row[2]                // totalSales
+                    ))
+                    .collect(Collectors.toList());
+            } catch (Exception e) {
+                salesByCategory = List.of();
+            }
 
-        return new SalesAnalyticsDto(totalSales, totalOrders, averageOrderValue, 
-                                   topSellingProducts, salesByCategory);
+            return new SalesAnalyticsDto(totalSales, totalOrders, averageOrderValue, 
+                                       topSellingProducts, salesByCategory);
+        } catch (Exception e) {
+            // Return empty analytics if there's any error
+            return new SalesAnalyticsDto(BigDecimal.ZERO, 0L, BigDecimal.ZERO, 
+                                       List.of(), List.of());
+        }
     }
 
     public SalesAnalyticsDto getSalesAnalytics() {

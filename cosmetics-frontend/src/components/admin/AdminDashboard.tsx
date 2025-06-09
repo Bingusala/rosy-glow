@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Container,
   Paper,
@@ -62,6 +62,20 @@ export function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const loadAnalytics = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const data = await apiService.getSalesAnalytics();
+      setAnalytics(data);
+    } catch (err: any) {
+      setError('Failed to load analytics data');
+      console.error('Analytics error:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !isAdmin)) {
       navigate('/login');
@@ -71,20 +85,7 @@ export function AdminDashboard() {
     if (isAdmin) {
       loadAnalytics();
     }
-  }, [isAuthenticated, isAdmin, authLoading, navigate]);
-
-  const loadAnalytics = async () => {
-    try {
-      setLoading(true);
-      const data = await apiService.getSalesAnalytics();
-      setAnalytics(data);
-    } catch (err: any) {
-      setError('Failed to load analytics data');
-      console.error('Analytics error:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [isAuthenticated, isAdmin, authLoading, navigate, loadAnalytics]);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);

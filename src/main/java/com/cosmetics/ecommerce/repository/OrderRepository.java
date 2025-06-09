@@ -21,9 +21,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     
     List<Order> findByStatus(Order.OrderStatus status);
     
-    @Query("SELECT COALESCE(SUM(o.totalAmount), 0) FROM Order o WHERE DATE(o.orderDate) BETWEEN :startDate AND :endDate")
+    @Query("SELECT COALESCE(SUM(o.totalAmount), 0) FROM Order o WHERE CAST(o.orderDate AS date) BETWEEN :startDate AND :endDate")
     BigDecimal getTotalSalesBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
     
-    @Query("SELECT COUNT(o) FROM Order o WHERE DATE(o.orderDate) BETWEEN :startDate AND :endDate")
+    @Query("SELECT COUNT(o) FROM Order o WHERE CAST(o.orderDate AS date) BETWEEN :startDate AND :endDate")
     Long getTotalOrdersBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 } 
