@@ -9,6 +9,7 @@ import { LoginPage } from './components/auth/LoginPage';
 import { RegisterPage } from './components/auth/RegisterPage';
 import { ProductList } from './components/products/ProductList';
 import { CartPage } from './components/cart/CartPage';
+import { ProfilePage } from './components/profile/ProfilePage';
 import { useSearchParams } from 'react-router-dom';
 
 // Create theme with pink color scheme
@@ -77,9 +78,6 @@ function SearchPage() {
 
 // Placeholder components for missing pages
 
-function ProfilePage() {
-  return <div>Profile Page - Coming Soon!</div>;
-}
 
 function OrdersPage() {
   return <div>Orders Page - Coming Soon!</div>;
